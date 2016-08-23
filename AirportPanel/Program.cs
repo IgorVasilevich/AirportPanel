@@ -8,10 +8,10 @@ namespace AirportPanel
 {
     enum flightStatus : int
     {
-        Check_In,
+        CheckIn,
         GateClosed,
         Arrived,
-        Departed_at,
+        Departedat,
         Unknown,
         Canceled,
         Expected_At,
@@ -61,9 +61,9 @@ namespace AirportPanel
             FlightArrive[1] = new FlightInformation(DateTime.Parse("07/08/2016 10:45:00"), DateTime.Parse("07/08/2016 06:30:00"), "AH8", "Kharkov", "Lviv", "Turkish Airlines", 'B', flightStatus.Canceled, "66-16");
             FlightArrive[2] = new FlightInformation(DateTime.Parse("08/08/2016 00:22:00"), DateTime.Parse("07/08/2016 20:12:00"), "SG8", "Kyiv", "Tbilisi", "Ukrainian Airlines", 'B', flightStatus.Canceled, "22-15");
             FlightArrive[3] = new FlightInformation(DateTime.Parse("08/08/2016 07:22:00"), DateTime.Parse("08/08/2016 03:22:00"), "SK8", "Pekin", "Kiev", "China Airlines", 'C', flightStatus.Expected_At, "32-15");
-            FlightArrive[4] = new FlightInformation(DateTime.Parse("10/08/2016 22:22:00"), DateTime.Parse("09/08/2016 23:15:00"), "PK8", "Kyiv", "Pekin", "China Airlines", 'C', flightStatus.Check_In, "32-15");
+            FlightArrive[4] = new FlightInformation(DateTime.Parse("10/08/2016 22:22:00"), DateTime.Parse("09/08/2016 23:15:00"), "PK8", "Kyiv", "Pekin", "China Airlines", 'C', flightStatus.CheckIn, "32-15");
             FlightArrive[5] = new FlightInformation(DateTime.Parse("08/08/2016 07:52:00"), DateTime.Parse("08/08/2016 13:22:00"), "SK7", "Paris", "Kiev", "China Airlines", 'A', flightStatus.In_Flight, "12-16");
-            FlightArrive[6] = new FlightInformation(DateTime.Parse("10/08/2016 07:54:00"), DateTime.Parse("09/08/2016 15:54:00"), "SK9", "Kyiv", "Paris", "China Airlines", 'C', flightStatus.Departed_at, "32-15");
+            FlightArrive[6] = new FlightInformation(DateTime.Parse("10/08/2016 07:54:00"), DateTime.Parse("09/08/2016 15:54:00"), "SK9", "Kyiv", "Paris", "China Airlines", 'C', flightStatus.Departedat, "32-15");
 
 
 
@@ -205,6 +205,7 @@ namespace AirportPanel
                                 string fligtN = Console.ReadLine();
                                 int counter = 0;
                                 Console.Clear();
+                                char yn;
                                 for (int i = 0; i < FlightArrive.Length; i++)
                                 {
                                     if (FlightArrive[i].FlightNumber == fligtN)
@@ -222,9 +223,18 @@ namespace AirportPanel
                                         Console.WriteLine("------------------------------------------------------------------------------------------");
                                         counter++;
                                         Console.WriteLine("Next flight?(Yes(y) or No(n)");
-                                        char yn = char.Parse(Console.ReadLine());
+                                        yn = char.Parse(Console.ReadLine());
                                         if (yn == 'n')
                                             break;
+
+                                        else if (yn == 'y')
+                                            continue;
+                                        else
+                                        {
+                                            Console.WriteLine("Wrong choise!");
+                                            Console.ReadLine();
+                                            break;
+                                        }
                                     }
 
                                 }
@@ -246,7 +256,7 @@ namespace AirportPanel
 
                                 Console.WriteLine("Enter search date and time to(dd/mm/yyyy hh:mm:ss):");
                                 DateTime dateArr1 = DateTime.Parse(Console.ReadLine());
-
+                                char yn;
                                 int counter = 0;
                                 for (int i = 0; i < FlightArrive.Length; i++)
                                 {
@@ -265,9 +275,17 @@ namespace AirportPanel
                                         Console.WriteLine("------------------------------------------------------------------------------------------");
                                         counter++;
                                         Console.WriteLine("Next flight?(Yes(y) or No(n)");
-                                        char yn = char.Parse(Console.ReadLine());
+                                        yn = char.Parse(Console.ReadLine());
                                         if (yn == 'n')
                                             break;
+                                        else if (yn == 'y')
+                                            continue;
+                                        else
+                                        {
+                                            Console.WriteLine("Wrong choise!");
+                                            Console.ReadLine();
+                                            break;
+                                        }
                                     }
 
                                 }
@@ -286,6 +304,7 @@ namespace AirportPanel
                                 Console.WriteLine("Enter a city of arrival:");
                                 string cityArr = Console.ReadLine();
                                 int counter = 0;
+                                char yn;
                                 for (int i = 0; i < FlightArrive.Length; i++)
                                 {
                                     if (FlightArrive[i].PortArriv == cityArr)
@@ -303,9 +322,17 @@ namespace AirportPanel
                                         Console.WriteLine("------------------------------------------------------------------------------------------");
                                         counter++;
                                         Console.WriteLine("Next flight?(Yes(y) or No(n)");
-                                        char yn = char.Parse(Console.ReadLine());
+                                        yn = char.Parse(Console.ReadLine());
                                         if (yn == 'n')
                                             break;
+                                        else if (yn == 'y')
+                                            continue;
+                                        else
+                                        {
+                                            Console.WriteLine("Wrong choise!");
+                                            Console.ReadLine();
+                                            break;
+                                        }
                                     }
 
                                 }
@@ -541,15 +568,15 @@ Air traffic control communication: Federal Aviation Administration);");
 
                                 string status = Console.ReadLine();
                                 if (status == "Chek in" || status == "chek in" || status == "Chek In")
-                                    FlightArrive[iteration].FlighStatus = flightStatus.Check_In;
+                                    FlightArrive[iteration].FlighStatus = flightStatus.CheckIn;
                                 else if (status == "Gate closed" || status == "gate closed" || status == "Gate closed")
                                     FlightArrive[iteration].FlighStatus = flightStatus.GateClosed;
                                 else if (status == "Arrived" || status == "arrived" || status == "arived")
                                     FlightArrive[iteration].FlighStatus = flightStatus.Arrived;
                                 else if (status == "Department At" || status == "Departmnet at" || status == "department at")
-                                    FlightArrive[iteration].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iteration].FlighStatus = flightStatus.Departedat;
                                 else if (status == "Unknown" || status == "unknown" || status == "uknown")
-                                    FlightArrive[iteration].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iteration].FlighStatus = flightStatus.Departedat;
                                 else if (status == "Canceled" || status == "canceled" || status == "cancel")
                                     FlightArrive[iteration].FlighStatus = flightStatus.Canceled;
                                 else if (status == "Expected At" || status == "expected at" || status == "Expected at")
@@ -557,7 +584,7 @@ Air traffic control communication: Federal Aviation Administration);");
                                 else if (status == "Delayed" || status == "delayed" || status == "delay")
                                     FlightArrive[iteration].FlighStatus = flightStatus.Delayed;
                                 else if (status == "In flight" || status == "In Flight" || status == "in flight")
-                                    FlightArrive[iteration].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iteration].FlighStatus = flightStatus.Departedat;
 
                                 Console.WriteLine("Enter a Gate:");
                                 FlightArrive[iteration].Gate = Console.ReadLine();
@@ -591,9 +618,15 @@ Air traffic control communication: Federal Aviation Administration);");
                                         yn = char.Parse(Console.ReadLine());
                                         if (yn == 'n')
                                             break;
-                                       
+
                                         else if (yn == 'y')
                                             continue;
+                                        else
+                                        {
+                                            Console.WriteLine("Wrong choise!");
+                                            Console.ReadLine();
+                                            break;
+                                        }
 
 
                                     }
@@ -619,15 +652,15 @@ Air traffic control communication: Federal Aviation Administration);");
 
                                 string status = Console.ReadLine();
                                 if (status == "Chek in" || status == "chek in" || status == "Chek In")
-                                    FlightArrive[iter].FlighStatus = flightStatus.Check_In;
+                                    FlightArrive[iter].FlighStatus = flightStatus.CheckIn;
                                 else if (status == "Gate closed" || status == "gate closed" || status == "Gate closed")
                                     FlightArrive[iter].FlighStatus = flightStatus.GateClosed;
                                 else if (status == "Arrived" || status == "arrived" || status == "arived")
                                     FlightArrive[iter].FlighStatus = flightStatus.Arrived;
                                 else if (status == "Department At" || status == "Departmnet at" || status == "department at")
-                                    FlightArrive[iteration].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iteration].FlighStatus = flightStatus.Departedat;
                                 else if (status == "Unknown" || status == "unknown" || status == "uknown")
-                                    FlightArrive[iter].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iter].FlighStatus = flightStatus.Departedat;
                                 else if (status == "Canceled" || status == "canceled" || status == "cancel")
                                     FlightArrive[iteration].FlighStatus = flightStatus.Canceled;
                                 else if (status == "Expected At" || status == "expected at" || status == "Expected at")
@@ -635,7 +668,7 @@ Air traffic control communication: Federal Aviation Administration);");
                                 else if (status == "Delayed" || status == "delayed" || status == "delay")
                                     FlightArrive[iter].FlighStatus = flightStatus.Delayed;
                                 else if (status == "In flight" || status == "In Flight" || status == "in flight")
-                                    FlightArrive[iter].FlighStatus = flightStatus.Departed_at;
+                                    FlightArrive[iter].FlighStatus = flightStatus.Departedat;
 
                                 Console.WriteLine("Enter a Gate:");
                                 FlightArrive[iter].Gate = Console.ReadLine();
@@ -672,21 +705,30 @@ Air traffic control communication: Federal Aviation Administration);");
                                         char yn = char.Parse(Console.ReadLine());
                                         if (yn == 'n')
                                             break;
+                                        else if (yn == 'y')
+                                            continue;
+                                        else
+                                        {
+                                            Console.WriteLine("Wrong choise!");
+                                            Console.ReadLine();
+                                            break;
+                                        }
 
                                     }
+                                }
                                     Console.WriteLine("Enter position number:");
                                     int iter = int.Parse(Console.ReadLine());
 
                                     FlightArrive[iter].Airline = null;
-                                    FlightArrive[iter].DayAndTimeArriv = DateTime.Parse("");
-                                    FlightArrive[iter].DayAndTimeDeprt = DateTime.Parse("");
+                                    FlightArrive[iter].DayAndTimeArriv = new DateTime();
+                                    FlightArrive[iter].DayAndTimeDeprt = new DateTime();
                                     FlightArrive[iter].FlightNumber = null;
                                     FlightArrive[iter].Gate = null;
                                     FlightArrive[iter].PortArriv = null;
                                     FlightArrive[iter].PortDepart = null;
                                     FlightArrive[iter].Terminal = ' ';
 
-                                }
+                                
                             }
                             if (choiseCase4 == 1)
                                 
